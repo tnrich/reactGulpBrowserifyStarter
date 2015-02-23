@@ -43,12 +43,10 @@ gulp.task('watch', function() {
     .pipe(gulp.dest(path.DEST_SRC));
 });
 
-gulp.task('default', ['watch']);
-
 gulp.task('build', function(){
   browserify({
     entries: [path.ENTRY_POINT],
-    transform: [reactify]
+    transform: [reactify],
   })
     .bundle()
     .pipe(source(path.MINIFIED_OUT))
@@ -65,3 +63,5 @@ gulp.task('replaceHTML', function(){
 });
 
 gulp.task('production', ['replaceHTML', 'build']);
+
+gulp.task('default', ['watch']);
